@@ -30,7 +30,7 @@ public class Word {
      */
     public void setValue(String value) throws Exception {
         value = standardizedWord(value);
-        if (!value.equals(""))
+        if (!value.isEmpty())
             this.value = value;
         else throw new Exception("Dữ liệu không hợp lệ!");
     }
@@ -47,7 +47,7 @@ public class Word {
      */
     public void setDefinition(String definition) {
         definition = standardizedWord(definition);
-        if (!definition.equals(""))
+        if (!definition.isEmpty())
             this.definition = definition;
     }
 
@@ -55,9 +55,7 @@ public class Word {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Word word = (Word) o;
-
         return value.equals(word.value);
     }
 
