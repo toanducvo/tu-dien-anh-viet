@@ -252,17 +252,19 @@ public class AVLTree {
      */
     public boolean edit (String value, String newValue, String newDefinition) {
         try {
-            if (value.equalsIgnoreCase(newValue) || newValue.isBlank())
-                this.root = updateNode(
-                        this.root,
-                        new Word(value,""),
-                        new Word(value, newDefinition)
-                );
-            else
-                this.root = updateNode(
-                        this.root,
-                        new Word(value, ""),
-                        new Word(newValue, newDefinition));
+            Word result = search (value);
+            if (result != null) {
+                if (newValue.isBlank()) {
+                    if (newDefinition.isBlank())
+                        throw new Exception();
+                    else this.root = updateNode(this.root, new Word(value,""), new Word(value, newDefinition));
+                } else {
+                    if (newDefinition.isBlank())
+                        this.root = updateNode(this.root, new Word(value,""), new Word(newValue, result.getDefinition()));
+                    else this.root = updateNode(this.root, new Word(value, ""), new Word(newValue, newDefinition));
+                }
+            }
+            else throw new Exception();
             return true;
         }
         catch (Exception e) {
