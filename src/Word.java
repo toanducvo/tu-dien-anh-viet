@@ -32,7 +32,7 @@ public class Word {
         value = standardizedWord(value);
         if (!value.isEmpty())
             this.value = value;
-        else throw new Exception("Dữ liệu không hợp lệ!");
+        else throw new Exception();
     }
 
     /**
