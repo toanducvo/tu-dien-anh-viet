@@ -150,7 +150,10 @@ public class AVLTree {
      */
     public boolean remove (String value) {
         try {
-            this.root = deleteNode(this.root, new Word(value, ""));
+            this.root = deleteNode(
+                    this.root,
+                    new Word(value, "")
+            );
             return true;
         }
         catch (Exception e) {
@@ -185,7 +188,9 @@ public class AVLTree {
             if (currentNode.getLeft() == null || currentNode.getRight() == null) {
                 // cho tempNode nhận giá trị của Node con khác null, hoặc tempNode vẫn có giá trị null
                 AVLNode tempNode = null;
-                tempNode = currentNode.getLeft() == null ? currentNode.getRight() : currentNode.getLeft();
+                if (tempNode == currentNode.getLeft())
+                    tempNode = currentNode.getRight();
+                else tempNode = currentNode.getLeft();
 
                 // Nếu tempNode vẫn bằng null thì Node hiện tại là Node lá
                 if (tempNode == null) {
@@ -199,7 +204,7 @@ public class AVLTree {
             else {
                 AVLNode tempNode = getMinimumValue(currentNode.getRight());
                 currentNode.setData(tempNode.getData());
-                currentNode.setRight(deleteNode(currentNode.getRight(), word));
+                currentNode.setRight(deleteNode(currentNode.getRight(), tempNode.getData()));
             }
         }
         if (currentNode == null)
@@ -248,8 +253,16 @@ public class AVLTree {
     public boolean edit (String value, String newValue, String newDefinition) {
         try {
             if (value.equalsIgnoreCase(newValue) || newValue.isBlank())
-                this.root = updateNode(this.root, new Word(value,""), new Word(value, newDefinition));
-            else this.root = updateNode(this.root, new Word(value, ""), new Word(newValue, newDefinition));
+                this.root = updateNode(
+                        this.root,
+                        new Word(value,""),
+                        new Word(value, newDefinition)
+                );
+            else
+                this.root = updateNode(
+                        this.root,
+                        new Word(value, ""),
+                        new Word(newValue, newDefinition));
             return true;
         }
         catch (Exception e) {
@@ -276,7 +289,10 @@ public class AVLTree {
      */
     public Word search (String value) {
         try {
-            return searchNode(this.root, new Word(value, ""));
+            return searchNode(
+                    this.root,
+                    new Word(value, "")
+            );
         }
         catch (Exception e) {
             return null;
