@@ -63,7 +63,7 @@ public class Main {
                         input.close();
                     }
                     default -> {
-                        System.out.println("Dữ liệu không hợp lệ!");
+                        System.out.println("-> Dữ liệu không hợp lệ!");
                     }
                 }
             }
