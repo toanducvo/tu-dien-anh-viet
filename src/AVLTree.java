@@ -291,9 +291,7 @@ public class AVLTree {
      */
     public Word search (String value) {
         try {
-            return searchNode(
-                    this.root,
-                    new Word(value, "")
+            return searchNode(this.root, new Word(value, "")
             );
         }
         catch (Exception e) {

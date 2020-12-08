@@ -11,7 +11,7 @@ public class Main {
                         3. Xóa từ
                         4. Sửa từ
                         5. Thoát chương trình""";
-        System.out.println(title + "\n" + menu);
+        System.out.println("\n" + title + "\n" + menu);
     }
     public static void main(String[] args) {
         AVLTree tree = new AVLTree();
@@ -29,7 +29,7 @@ public class Main {
                         Word result = tree.search(word);
                         if (result == null)
                             System.out.println("Từ bạn cần tìm chưa có trong từ điển!");
-                        else System.out.println(result);
+                        else System.out.println("Kết quả: \n" + result);
                     }
                     case "2" -> {
                         System.out.print("Nhập vào từ cần thêm: ");
@@ -60,6 +60,7 @@ public class Main {
                     }
                     case "5" -> {
                         System.out.println("Cảm ơn bạn");
+                        input.close();
                     }
                     default -> {
                         System.out.println("Dữ liệu không hợp lệ!");
@@ -71,5 +72,8 @@ public class Main {
         catch (Exception e) {
             System.out.println(e.getMessage() == null ? "Lỗi" :  e.getMessage());
         }
+//        finally {
+//
+//        }
     }
 }

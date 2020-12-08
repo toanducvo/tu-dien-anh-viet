@@ -64,14 +64,15 @@ public class Word {
         return value.hashCode();
     }
 
+
     @Override
     public String toString() {
         return String.format(
                 """
-                        Từ: %s
-                        |
-                        |____ Nghĩa: %s
-                        """,
+                %-15s | %-30s 
+                %-15s | %-30s
+                """,
+                "TỪ", "NGHĨA",
                 value, definition
         );
     }
