@@ -24,42 +24,42 @@ public class Main {
                 command = input.nextLine();
                 switch (command) {
                     case "1" -> {
-                        System.out.print("Nhập vào từ cần tra cứu: ");
+                        System.out.print("-> Nhập vào từ cần tra cứu: ");
                         String word = input.nextLine();
                         Word result = tree.search(word);
                         if (result == null)
-                            System.out.println("Từ bạn cần tìm chưa có trong từ điển!");
-                        else System.out.println("Kết quả: \n" + result);
+                            System.out.println("-> Từ bạn cần tìm chưa có trong từ điển!");
+                        else System.out.println("-> Kết quả: \n" + result);
                     }
                     case "2" -> {
-                        System.out.print("Nhập vào từ cần thêm: ");
+                        System.out.print("-> Nhập vào từ cần thêm: ");
                         String value = input.nextLine();
-                        System.out.print("Nhập vào nghĩa (Nhấn Enter để bỏ qua): ");
+                        System.out.print("-> Nhập vào nghĩa (Nhấn Enter để bỏ qua): ");
                         String definition = input.nextLine();
                         if (!tree.add(value, definition))
-                            System.out.println("Thêm không thành công!");
-                        else System.out.println("Thêm thành công!");
+                            System.out.println("-> Thêm không thành công!");
+                        else System.out.println("-> Thêm thành công!");
                     }
                     case "3" -> {
-                        System.out.print("Nhập vào từ cần xóa: ");
+                        System.out.print("-> Nhập vào từ cần xóa: ");
                         String value = input.nextLine();
                         if (!tree.remove(value))
-                            System.out.println("Xóa không thành công!");
-                        else System.out.println("Xóa thành công!");
+                            System.out.println("-> Xóa không thành công!");
+                        else System.out.println("-> Xóa thành công!");
                     }
                     case "4" -> {
-                        System.out.print("Nhập vào từ cần sửa: ");
+                        System.out.print("-> Nhập vào từ cần sửa: ");
                         String value = input.nextLine();
-                        System.out.print("Nhập vào từ mới (Nhấn Enter để bỏ qua): ");
+                        System.out.print("-> Nhập vào từ mới (Nhấn Enter để bỏ qua): ");
                         String newValue = input.nextLine();
-                        System.out.print("Nhập vào nghĩa (Nhấn Enter để bỏ qua): ");
+                        System.out.print("-> Nhập vào nghĩa (Nhấn Enter để bỏ qua): ");
                         String newDefinition = input.nextLine();
                         if (!tree.edit(value, newValue, newDefinition))
-                            System.out.println("Sửa không thành công!");
-                        else System.out.println("Sửa thành công!");
+                            System.out.println("-> Sửa không thành công!");
+                        else System.out.println("-> Sửa thành công!");
                     }
                     case "5" -> {
-                        System.out.println("Cảm ơn bạn");
+                        System.out.println("-> Cảm ơn bạn");
                         input.close();
                     }
                     default -> {
