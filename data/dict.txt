@@ -1,0 +1,60 @@
+@aboil |Tính từ & phó từ  $đang sôi
+@unclick |Ngoại động từ  $(kỹ thuật) thả ngàm hãm (bánh xe răng cưa)
+@uncleanliness |Danh từ  $sự bẩn thỉu, sự nhơ nhuốc
+@consubstantiality |Danh từ  $tính đồng thể chất
+@abrogative |Tính từ  $bị hủy bỏ
+@soilure |Danh từ  $vết nhơ
+@clearway |Danh từ  $đường cấm xe đỗ
+@westland |Danh từ  $đất miền tây
+@absquatulate |Nội động từ  $trốn chạy
+@foxship |Danh từ  $tính gian xảo
+@acescent |Tính từ  $hoá chua; chua
+@whity |Tính từ  $trắng nhạt
+@worldwide |Tính từ, Phó từ  $khắp thế giới
+@dotted |Tính từ  $có nhiều chấm
+@otherwhile |phó từ  $vào lúc khác
+@whilere |phó từ  $(cổ) cách đây không lâu; mới đây
+@patagial |Tính từ  $(động vật học) thuộc mảng dù lượn
+@enacting clauses |Danh từ  $điều khoản (của một đạo luật...)
+@crumpy |Tính từ  $dễ vỡ; mềm yếu
+@outclimb |Ngoại động từ  $trèo giỏi hơn
+@downland |Danh từ  $vùng đất thấp
+@zoo |Danh từ  $vườn thú; sở thú
+@uncheerful |Tính từ  $không vui; buồn; rầu rĩ
+@passiontide |Danh từ  $hai tuần lễ cuối của tuần chay
+@zipper |danh từ  $khoá kéo (ở áo...)
+@pauperize |Ngoại động từ  $bần cùng hoá
+@pawnshop |Danh từ  $tiệm cầm đồ
+@hunkers |Danh từ  (số nhiều) (khẩu ngữ) $hông
+@outborn |Tính từ  $sinh ở nước ngoài
+@semimetal |Tính từ  $nửa kim loại
+@semisweet |Tính từ  $ngọt vừa
+@unbreathable |Tính từ  $không thở được
+@farmland |Danh từ  $đất chăn nuôi, trồng trọt
+@softy |Danh từ  $(thông tục) người nhu nhược, người ẻo lả
+@crutched |Tính từ  $đi nạng; chống gậy
+@contractibility |Danh từ  $tính có thể thu nhỏ, tính có thể co lại
+@cryolite |Danh từ  $(khoáng chất) criôlit
+@cryptologist |Danh từ  $người chuyên về mật mã
+@hybris |Danh từ  $quá kiêu căng
+@unbesseming |Tính từ  $không thích hợp
+@bedtime |Danh từ  $giờ đi ngủ
+@well-balanced |Tính từ  $có tinh thần ổn định
+@ctenosome |Danh từ  $(sinh học) nhiễm sắc thể hình lược
+@oubliette |Danh từ  (cũ) $hầm ngục tối
+@magnetostatics |Danh từ  $từ tĩnh học
+@solute |Danh từ  $chất tan
+@bill |Danh từ  $(từ Mỹ check) hóa đơn, giấy tính tiền $tờ quảng cáo, yết thị
+@maharaja |Danh từ  $hoàng tử (ấn Độ)
+@encephalisation |Danh từ  $sự hình thành bộ não
+@uncompliant |Tính từ  $không hay chiều  $không phục tùng
+@employable |Tính từ  $có thể được thuê làm
+@employee |Danh từ  $người làm, người làm công
+@employer |Danh từ  $ông chủ
+@well-made |Tính từ  $phát triển cân đối (người)
+@uncap |Ngoại động từ  $bỏ mũ (để chào) $mở nắp
+@housewifely |Tính từ  $nội trợ
+@hurdler |Danh từ  $vận động viên chạy vượt rào
+@hurdling |Danh từ  $môn chạy/nhảy vượt rào
+@hurds |Danh từ, (như)  $bã đay gai
+@hygrograph |Danh từ  $máy ghi độ ẩm không khí
