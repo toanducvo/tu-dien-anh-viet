@@ -1,5 +1,3 @@
-package dict;
-
 public class Word {
     private String value;
     private String definition = "Chưa xác định";

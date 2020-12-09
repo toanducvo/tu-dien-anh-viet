@@ -1,6 +1,3 @@
-import dict.AVLTree;
-import dict.Word;
-
 import java.io.File;
 import java.util.Scanner;
 
