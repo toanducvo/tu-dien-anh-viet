@@ -358,6 +358,6 @@ public class AVLTree {
     }
 
     public AVLTree () throws Exception {
-        loadDictFromFile("C:\\Users\\Duc Toan Vo\\Desktop\\tu-dien-anh-viet\\data\\dict.txt");
+        loadDictFromFile("data/dict.txt");
     }
 }
