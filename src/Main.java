@@ -2,7 +2,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Main {
-    private static void listMenu () {
+    private static void listMenu() {
         String title = """
                 TỪ ĐIỂN ANH VIỆT""";
         String menu =
@@ -14,6 +14,7 @@ public class Main {
                         5. Thoát chương trình""";
         System.out.println("\n" + title + "\n" + menu);
     }
+
     public static void main(String[] args) {
         String command = "";
         try {
@@ -72,9 +73,8 @@ public class Main {
                 }
             }
             while (!command.equals("5"));
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage() == null ? "Lỗi" :  e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage() == null ? "Lỗi" : e.getMessage());
         }
     }
 }

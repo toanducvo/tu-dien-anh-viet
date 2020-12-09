@@ -69,9 +69,9 @@ public class Word {
     public String toString() {
         return String.format(
                 """
-                %-15s | %-30s 
-                %-15s | %-30s
-                """,
+                        %-15s | %-30s 
+                        %-15s | %-30s
+                        """,
                 "TỪ", "NGHĨA",
                 value, definition
         );

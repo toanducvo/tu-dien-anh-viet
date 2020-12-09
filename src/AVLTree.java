@@ -4,6 +4,10 @@ import java.nio.charset.StandardCharsets;
 public class AVLTree {
     private AVLNode root;
 
+    public AVLTree() throws Exception {
+        loadDictFromFile("src/dict.txt");
+    }
+
     public AVLNode getRoot() {
         return root;
     }
@@ -100,30 +104,28 @@ public class AVLTree {
     }
 
     /**
-     *
-     * @param value từ (tiếng Anh)
+     * @param value      từ (tiếng Anh)
      * @param definition nghĩa hoặc định nghĩa của từ
      * @return true nếu thêm thành công, ngược lại trả về false
      */
-    public boolean add (String value, String definition) {
+    public boolean add(String value, String definition) {
         try {
             this.root = insertNode(this.root, new Word(value, definition));
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     /**
      * @param currentNode Node hiện tại
-     * @param data từ và nghĩa (hoặc định nghĩa) của từ
+     * @param data        từ và nghĩa (hoặc định nghĩa) của từ
      * @return Cây kết quả của cây hiện tại sau khi thêm thành công Node mới lên cây
      * @throws Exception Nếu từ được thêm đã có trong cây
      */
     private AVLNode insertNode(AVLNode currentNode, Word data) throws Exception {
-         // Nếu cây rỗng, thêm từ đầu tiên vào cây
-         // ngược lại, từ sẽ được thêm vào Node lá của Node hiện tại
+        // Nếu cây rỗng, thêm từ đầu tiên vào cây
+        // ngược lại, từ sẽ được thêm vào Node lá của Node hiện tại
         if (currentNode == null)
             return new AVLNode(data);
 
@@ -165,31 +167,28 @@ public class AVLTree {
     }
 
     /**
-     *
      * @param value từ cần xóa
      * @return true nếu xóa thành công từ, ngược lại trả về false
      */
-    public boolean remove (String value) {
+    public boolean remove(String value) {
         try {
             this.root = deleteNode(
                     this.root,
                     new Word(value, "")
             );
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     /**
-     *
      * @param currentNode Node hiện tại
-     * @param data Từ cần xóa
+     * @param data        Từ cần xóa
      * @return Cây kết quả sau khi xóa một Node trên cây
      * @throws Exception Nếu từ cần xóa không có trong cây
      */
-    private AVLNode deleteNode (AVLNode currentNode, Word data) throws Exception{
+    private AVLNode deleteNode(AVLNode currentNode, Word data) throws Exception {
         // Ném ngoại lệ nếu cây rỗng
         // hoặc nếu từ cần xóa không có trong cây
         if (currentNode == null)
@@ -199,11 +198,11 @@ public class AVLTree {
         if (currentNode.isLessThan(data.getValue(), currentNode.getData().getValue()))
             currentNode.setLeft(deleteNode(currentNode.getLeft(), data));
 
-        // nếu từ cần xóa lớn hơn Node hiện tại, tiến hành xóa ở cây con phải của Node hiện tại
+            // nếu từ cần xóa lớn hơn Node hiện tại, tiến hành xóa ở cây con phải của Node hiện tại
         else if (currentNode.isGreaterThan(data.getValue(), currentNode.getData().getValue()))
             currentNode.setRight(deleteNode(currentNode.getRight(), data));
 
-        // ngược lại, đây là Node cần xóa
+            // ngược lại, đây là Node cần xóa
         else {
             // Node hiện tại không có Node bên trái hoặc Node bên phải hoặc cả hai
             if (currentNode.getLeft() == null || currentNode.getRight() == null) {
@@ -217,8 +216,7 @@ public class AVLTree {
                 if (tempNode == null) {
                     tempNode = currentNode;
                     currentNode = null;
-                }
-                else currentNode = tempNode;
+                } else currentNode = tempNode;
             }
 
             // Ngược lại, tìm phần tử thế mạng
@@ -266,41 +264,39 @@ public class AVLTree {
     }
 
     /**
-     * @param value từ cần sửa
-     * @param newValue từ mới
+     * @param value         từ cần sửa
+     * @param newValue      từ mới
      * @param newDefinition nghĩa hoặc định nghĩa mới
      * @return true nếu sửa thành công
      */
-    public boolean edit (String value, String newValue, String newDefinition) {
+    public boolean edit(String value, String newValue, String newDefinition) {
         try {
-            Word result = search (value);
+            Word result = search(value);
             if (result != null) {
                 if (newValue.isBlank()) {
                     if (newDefinition.isBlank())
                         throw new Exception();
-                    else this.root = updateNode(this.root, new Word(value,""), new Word(value, newDefinition));
+                    else this.root = updateNode(this.root, new Word(value, ""), new Word(value, newDefinition));
                 } else {
                     if (newDefinition.isBlank())
-                        this.root = updateNode(this.root, new Word(value,""), new Word(newValue, result.getDefinition()));
+                        this.root = updateNode(this.root, new Word(value, ""), new Word(newValue, result.getDefinition()));
                     else this.root = updateNode(this.root, new Word(value, ""), new Word(newValue, newDefinition));
                 }
-            }
-            else throw new Exception();
+            } else throw new Exception();
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     /**
-     * @param currentNode Node hiện tại
-     * @param currentData Từ cũ
+     * @param currentNode  Node hiện tại
+     * @param currentData  Từ cũ
      * @param dataToUpdate Từ mới
      * @return Cây kết quả của Node hiện tại sau khi thêm một Node mới (trong trường hợp từ cũ khác từ mới)
      * @throws Exception nếu không thêm hoặc không xóa được
      */
-    private AVLNode updateNode (AVLNode currentNode, Word currentData, Word dataToUpdate) throws Exception {
+    private AVLNode updateNode(AVLNode currentNode, Word currentData, Word dataToUpdate) throws Exception {
         currentNode = deleteNode(currentNode, currentData);
         currentNode = insertNode(currentNode, dataToUpdate);
         return currentNode;
@@ -310,21 +306,20 @@ public class AVLTree {
      * @param value từ cần tìm
      * @return null nếu từ cần tìm không hợp lệ hoặc không tìm thấy từ
      */
-    public Word search (String value) {
+    public Word search(String value) {
         try {
             return searchNode(this.root, new Word(value, ""));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return null;
         }
     }
 
     /**
      * @param currentNode Node hiện tại
-     * @param data từ cần tìm
+     * @param data        từ cần tìm
      * @return null nếu không tìm thấy, ngược lại trả về từ cần tìm
      */
-    private Word searchNode (AVLNode currentNode, Word data) {
+    private Word searchNode(AVLNode currentNode, Word data) {
         while (currentNode != null) {
             if (currentNode.isGreaterThan(data.getValue(), currentNode.getData().getValue()))
                 return searchNode(currentNode.getRight(), data);
@@ -346,13 +341,14 @@ public class AVLTree {
         System.out.print(currentNode.getData());
         getSortedNode(currentNode.getRight());
     }
-    private void loadDictFromFile (String url) throws Exception {
+
+    private void loadDictFromFile(String url) throws Exception {
         File file = new File(url);
         FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
         String reader = bufferedReader.readLine();
         while (reader != null) {
-            String[] tmpString = reader.toString().split("\\|");
+            String[] tmpString = reader.split("\\|");
             String value = tmpString[0].replaceAll("@", "");
             String definition = tmpString[1];
             add(value, definition);
@@ -363,22 +359,19 @@ public class AVLTree {
         file.delete();
     }
 
-    public void save (AVLNode currentNode) throws Exception {
+    public void save(AVLNode currentNode) throws Exception {
         if (currentNode == null)
             return;
-        save (currentNode.getLeft());
+        save(currentNode.getLeft());
         writeDictToFile(currentNode.getData().getValue() + " |" + currentNode.getData().getDefinition());
         save(currentNode.getRight());
     }
-    private void writeDictToFile (String data) throws Exception {
+
+    private void writeDictToFile(String data) throws Exception {
         String url = "src/tmp~.txt";
         FileOutputStream fileOutputStream = new FileOutputStream(url, true);
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
         bufferedWriter.write(data + "\n");
         bufferedWriter.close();
-    }
-
-    public AVLTree () throws Exception {
-        loadDictFromFile("src/dict.txt");
     }
 }
