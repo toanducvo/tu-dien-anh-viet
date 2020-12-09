@@ -14,9 +14,9 @@ public class Main {
         System.out.println("\n" + title + "\n" + menu);
     }
     public static void main(String[] args) {
-        AVLTree tree = new AVLTree();
         String command = "";
         try {
+            AVLTree tree = new AVLTree();
             do {
                 Scanner input = new Scanner(System.in);
                 listMenu();
