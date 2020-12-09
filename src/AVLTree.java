@@ -55,10 +55,6 @@ public class AVLTree {
         AVLNode returnedNode = currentNode.getRight();
         currentNode.setRight(returnedNode.getLeft());
         returnedNode.setLeft(currentNode);
-
-//        AVLNode tempNode = returnedNode.getLeft();
-//        returnedNode.setLeft(currentNode);
-//        currentNode.setRight(tempNode);
         currentNode.setHeight(
                 Math.max(
                         getHeight(currentNode.getLeft()),
@@ -81,13 +77,9 @@ public class AVLTree {
     private AVLNode rotateRight(AVLNode currentNode) {
         if (currentNode == null)
             return null;
-
         AVLNode returnedNode = currentNode.getLeft();
         currentNode.setLeft(returnedNode.getRight());
         returnedNode.setRight(currentNode);
-//        AVLNode tempNode = currentNode.getRight();
-//        returnedNode.setRight(currentNode);
-//        currentNode.setLeft(tempNode);
         currentNode.setHeight(
                 Math.max(
                         getHeight(currentNode.getLeft()),
