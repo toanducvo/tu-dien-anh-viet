@@ -96,23 +96,23 @@ public class AVLTree {
 
     /**
      * @param currentNode Node hiện tại
-     * @param word từ và nghĩa (hoặc định nghĩa) của từ
+     * @param data từ và nghĩa (hoặc định nghĩa) của từ
      * @return Cây kết quả của cây hiện tại sau khi thêm thành công Node mới lên cây
      * @throws Exception Nếu từ được thêm đã có trong cây
      */
-    private AVLNode insertNode(AVLNode currentNode, Word word) throws Exception {
+    private AVLNode insertNode(AVLNode currentNode, Word data) throws Exception {
          // Nếu cây rỗng, thêm từ đầu tiên vào cây
          // ngược lại, từ sẽ được thêm vào Node lá của Node hiện tại
         if (currentNode == null)
-            return new AVLNode(word);
+            return new AVLNode(data);
 
         // Nếu từ được thêm nhỏ hơn từ ở Node hiện tại, tiến hành thêm ở cây bên trái Node hiện tại
-        if (currentNode.isGreaterThan(currentNode.getData().getValue(), word.getValue()))
-            currentNode.setLeft(insertNode(currentNode.getLeft(), word));
+        if (currentNode.isGreaterThan(currentNode.getData().getValue(), data.getValue()))
+            currentNode.setLeft(insertNode(currentNode.getLeft(), data));
 
             // nếu từ được thêm lớn hơn từ ở Node hiện tại, tiến hành thêm từ ở cây bên phải Node hiện tại
-        else if (currentNode.isLessThan(currentNode.getData().getValue(), word.getValue()))
-            currentNode.setRight(insertNode(currentNode.getRight(), word));
+        else if (currentNode.isLessThan(currentNode.getData().getValue(), data.getValue()))
+            currentNode.setRight(insertNode(currentNode.getRight(), data));
 
             // nếu từ được thêm đã có trong cây thì ném ngoại lệ (thêm không thành công)
         else throw new Exception();
@@ -128,15 +128,15 @@ public class AVLTree {
         // Tính chỉ số cân bằng của cây
         int balFactor = getBalanceFactor(currentNode);
 
-        if (balFactor > 1 && currentNode.isLessThan(word.getValue(), currentNode.getLeft().getData().getValue()))
+        if (balFactor > 1 && currentNode.isLessThan(data.getValue(), currentNode.getLeft().getData().getValue()))
             return rotateRight(currentNode);
-        if (balFactor < -1 && currentNode.isGreaterThan(word.getValue(), currentNode.getRight().getData().getValue()))
+        if (balFactor < -1 && currentNode.isGreaterThan(data.getValue(), currentNode.getRight().getData().getValue()))
             return rotateLeft(currentNode);
-        if (balFactor > 1 && currentNode.isGreaterThan(word.getValue(), currentNode.getLeft().getData().getValue())) {
+        if (balFactor > 1 && currentNode.isGreaterThan(data.getValue(), currentNode.getLeft().getData().getValue())) {
             currentNode.setLeft(rotateLeft(currentNode.getLeft()));
             return rotateRight(currentNode);
         }
-        if (balFactor < -1 && currentNode.isLessThan(word.getValue(), currentNode.getLeft().getData().getValue())) {
+        if (balFactor < -1 && currentNode.isLessThan(data.getValue(), currentNode.getLeft().getData().getValue())) {
             currentNode.setRight(rotateLeft(currentNode.getRight()));
             return rotateLeft(currentNode);
         }
@@ -164,23 +164,23 @@ public class AVLTree {
     /**
      *
      * @param currentNode Node hiện tại
-     * @param word Từ cần xóa
+     * @param data Từ cần xóa
      * @return Cây kết quả sau khi xóa một Node trên cây
      * @throws Exception Nếu từ cần xóa không có trong cây
      */
-    private AVLNode deleteNode (AVLNode currentNode, Word word) throws Exception{
+    private AVLNode deleteNode (AVLNode currentNode, Word data) throws Exception{
         // Ném ngoại lệ nếu cây rỗng
         // hoặc nếu từ cần xóa không có trong cây
         if (currentNode == null)
             throw new Exception();
 
         // Nếu từ cần xóa nhỏ hơn Node hiện tại, tiến hành xóa ở cây con trái của Node hiện tại
-        if (currentNode.isLessThan(word.getValue(), currentNode.getData().getValue()))
-            currentNode.setLeft(deleteNode(currentNode.getLeft(), word));
+        if (currentNode.isLessThan(data.getValue(), currentNode.getData().getValue()))
+            currentNode.setLeft(deleteNode(currentNode.getLeft(), data));
 
         // nếu từ cần xóa lớn hơn Node hiện tại, tiến hành xóa ở cây con phải của Node hiện tại
-        else if (currentNode.isGreaterThan(word.getValue(), currentNode.getData().getValue()))
-            currentNode.setRight(deleteNode(currentNode.getRight(), word));
+        else if (currentNode.isGreaterThan(data.getValue(), currentNode.getData().getValue()))
+            currentNode.setRight(deleteNode(currentNode.getRight(), data));
 
         // ngược lại, đây là Node cần xóa
         else {
@@ -274,14 +274,14 @@ public class AVLTree {
 
     /**
      * @param currentNode Node hiện tại
-     * @param oldWord Từ cũ
-     * @param newWord Từ mới
+     * @param currentData Từ cũ
+     * @param dataToUpdate Từ mới
      * @return Cây kết quả của Node hiện tại sau khi thêm một Node mới (trong trường hợp từ cũ khác từ mới)
      * @throws Exception nếu không thêm hoặc không xóa được
      */
-    private AVLNode updateNode (AVLNode currentNode, Word oldWord, Word newWord) throws Exception {
-        currentNode = deleteNode(currentNode, oldWord);
-        currentNode = insertNode(currentNode, newWord);
+    private AVLNode updateNode (AVLNode currentNode, Word currentData, Word dataToUpdate) throws Exception {
+        currentNode = deleteNode(currentNode, currentData);
+        currentNode = insertNode(currentNode, dataToUpdate);
         return currentNode;
     }
 
@@ -301,15 +301,15 @@ public class AVLTree {
 
     /**
      * @param currentNode Node hiện tại
-     * @param word từ cần tìm
+     * @param data từ cần tìm
      * @return null nếu không tìm thấy, ngược lại trả về từ cần tìm
      */
-    private Word searchNode (AVLNode currentNode, Word word) {
+    private Word searchNode (AVLNode currentNode, Word data) {
         while (currentNode != null) {
-            if (currentNode.isGreaterThan(word.getValue(), currentNode.getData().getValue()))
-                return searchNode(currentNode.getRight(), word);
-            else if (currentNode.isLessThan(word.getValue(), currentNode.getData().getValue()))
-                return searchNode(currentNode.getLeft(), word);
+            if (currentNode.isGreaterThan(data.getValue(), currentNode.getData().getValue()))
+                return searchNode(currentNode.getRight(), data);
+            else if (currentNode.isLessThan(data.getValue(), currentNode.getData().getValue()))
+                return searchNode(currentNode.getLeft(), data);
             else return currentNode.getData();
         }
         return null;
