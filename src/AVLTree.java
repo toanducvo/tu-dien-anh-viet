@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+
 public class AVLTree {
     private AVLNode root;
 
@@ -325,5 +330,24 @@ public class AVLTree {
         getSortedNode(currentNode.getLeft());
         System.out.print(currentNode.getData());
         getSortedNode(currentNode.getRight());
+    }
+
+    private void loadDictFromFile (String url) throws Exception {
+        FileInputStream fileInputStream = new FileInputStream(url);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+        String reader = bufferedReader.readLine();
+        while (reader != null) {
+            String tmpString[] = reader.toString().split("\\|");
+            String value = tmpString[0].replaceAll("@", "");
+            String definition = tmpString[1];
+            add(value, definition);
+            reader = bufferedReader.readLine();
+        }
+        bufferedReader.close();
+        fileInputStream.close();
+    }
+
+    public AVLTree () throws Exception {
+        loadDictFromFile("C:\\Users\\Duc Toan Vo\\Desktop\\tu-dien-anh-viet\\data\\dict.txt");
     }
 }
