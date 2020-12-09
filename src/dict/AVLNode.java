@@ -1,3 +1,5 @@
+package dict;
+
 public class AVLNode {
     private Word data;
     private int height;
