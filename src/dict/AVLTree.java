@@ -1,11 +1,18 @@
 package dict;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class AVLTree {
     private AVLNode root;
+
+    public AVLNode getRoot() {
+        return root;
+    }
+
+    public void setRoot(AVLNode root) {
+        this.root = root;
+    }
 
     /**
      * @param currentNode Node hiện tại
@@ -307,8 +314,7 @@ public class AVLTree {
      */
     public Word search (String value) {
         try {
-            return searchNode(this.root, new Word(value, "")
-            );
+            return searchNode(this.root, new Word(value, ""));
         }
         catch (Exception e) {
             return null;
@@ -343,6 +349,7 @@ public class AVLTree {
         getSortedNode(currentNode.getRight());
     }
     private void loadDictFromFile (String url) throws Exception {
+        File file = new File(url);
         FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
         String reader = bufferedReader.readLine();
@@ -355,9 +362,25 @@ public class AVLTree {
         }
         bufferedReader.close();
         fileInputStream.close();
+        file.delete();
+    }
+
+    public void save (AVLNode currentNode) throws Exception {
+        if (currentNode == null)
+            return;
+        save (currentNode.getLeft());
+        writeDictToFile(currentNode.getData().getValue() + " |" + currentNode.getData().getDefinition());
+        save(currentNode.getRight());
+    }
+    private void writeDictToFile (String data) throws Exception {
+        String url = "src/tmp~.txt";
+        FileOutputStream fileOutputStream = new FileOutputStream(url, true);
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8));
+        bufferedWriter.write(data + "\n");
+        bufferedWriter.close();
     }
 
     public AVLTree () throws Exception {
-        loadDictFromFile("data/dict.txt");
+        loadDictFromFile("src/dict.txt");
     }
 }

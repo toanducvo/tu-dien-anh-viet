@@ -1,6 +1,7 @@
 import dict.AVLTree;
 import dict.Word;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Main {
@@ -63,6 +64,9 @@ public class Main {
                     }
                     case "5" -> {
                         System.out.println("-> Cảm ơn bạn");
+                        tree.save(tree.getRoot());
+                        File file = new File("src/tmp~.txt");
+                        file.renameTo(new File("src/dict.txt"));
                         input.close();
                     }
                     default -> {
@@ -75,8 +79,5 @@ public class Main {
         catch (Exception e) {
             System.out.println(e.getMessage() == null ? "Lỗi" :  e.getMessage());
         }
-//        finally {
-//
-//        }
     }
 }
