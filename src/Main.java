@@ -20,7 +20,6 @@ public class Main {
         String command = "";
         try {
             AVLTree tree = new AVLTree();
-            tree.load("C:\\Users\\Duc Toan Vo\\Desktop\\tu-dien-anh-viet\\data\\dict.txt");
             do {
                 Scanner input = new Scanner(System.in);
                 listMenu();

@@ -41,10 +41,15 @@ public class AVLTree {
      * @return Cây kết quả sau khi thực hiện phép quay trái của Node hiện tại
      */
     private AVLNode rotateLeft(AVLNode currentNode) {
+        if (currentNode == null)
+            return null;
         AVLNode returnedNode = currentNode.getRight();
-        AVLNode tempNode = returnedNode.getLeft();
+        currentNode.setRight(returnedNode.getLeft());
         returnedNode.setLeft(currentNode);
-        currentNode.setRight(tempNode);
+
+//        AVLNode tempNode = returnedNode.getLeft();
+//        returnedNode.setLeft(currentNode);
+//        currentNode.setRight(tempNode);
         currentNode.setHeight(
                 Math.max(
                         getHeight(currentNode.getLeft()),
@@ -65,10 +70,15 @@ public class AVLTree {
      * @return Cây kết quả sau khi thực hiện phép quay phải của Node hiện tại
      */
     private AVLNode rotateRight(AVLNode currentNode) {
+        if (currentNode == null)
+            return null;
+
         AVLNode returnedNode = currentNode.getLeft();
-        AVLNode tempNode = currentNode.getRight();
+        currentNode.setLeft(returnedNode.getRight());
         returnedNode.setRight(currentNode);
-        currentNode.setLeft(tempNode);
+//        AVLNode tempNode = currentNode.getRight();
+//        returnedNode.setRight(currentNode);
+//        currentNode.setLeft(tempNode);
         currentNode.setHeight(
                 Math.max(
                         getHeight(currentNode.getLeft()),
@@ -332,9 +342,6 @@ public class AVLTree {
         System.out.print(currentNode.getData());
         getSortedNode(currentNode.getRight());
     }
-    public void load (String url) throws Exception {
-        loadDictFromFile(url);
-    }
     private void loadDictFromFile (String url) throws Exception {
         FileInputStream fileInputStream = new FileInputStream(url);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
@@ -343,10 +350,14 @@ public class AVLTree {
             String[] tmpString = reader.toString().split("\\|");
             String value = tmpString[0].replaceAll("@", "");
             String definition = tmpString[1];
-           add(value, definition);
+            add(value, definition);
             reader = bufferedReader.readLine();
         }
         bufferedReader.close();
         fileInputStream.close();
+    }
+
+    public AVLTree () throws Exception {
+        loadDictFromFile("C:\\Users\\Duc Toan Vo\\Desktop\\tu-dien-anh-viet\\data\\dict.txt");
     }
 }
