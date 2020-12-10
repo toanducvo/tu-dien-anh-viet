@@ -326,7 +326,7 @@ public class AVLTree {
         getSortedNode(this.root);
     }
 
-    public void getSortedNode(AVLNode currentNode) {
+    private void getSortedNode(AVLNode currentNode) {
         if (currentNode == null)
             return;
         getSortedNode(currentNode.getLeft());
