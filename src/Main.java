@@ -64,7 +64,9 @@ public class Main {
                         System.out.println("-> Cảm ơn bạn");
                         tree.save(tree.getRoot());
                         File file = new File("src/tmp~.txt");
-                        file.renameTo(new File("src/dict.txt"));
+                        boolean isRenamed  = file.renameTo(new File("src/dict.txt"));
+                        if (!isRenamed)
+                            throw new Exception();
                         input.close();
                     }
                     default -> {
